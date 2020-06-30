@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RabbitMQSender {
-    private static final Logger LOG = LoggerFactory.getLogger(RabbitMQSender.class);
+public class SimpleDirectSender {
+    private static final Logger LOG = LoggerFactory.getLogger(SimpleDirectSender.class);
 
     private final RabbitTemplate rabbitTemplate;
 
@@ -19,7 +19,7 @@ public class RabbitMQSender {
     @Value("${rabbitmq.routingKey}")
     private String routingKey;
 
-    public RabbitMQSender(RabbitTemplate rabbitTemplate) {
+    public SimpleDirectSender(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
