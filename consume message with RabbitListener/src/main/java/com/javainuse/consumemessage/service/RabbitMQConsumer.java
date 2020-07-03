@@ -15,4 +15,13 @@ public class RabbitMQConsumer {
     public void receivedMessage(Employee employee) {
         LOG.info("Received Message From RabbitMQ: " + employee);
     }
+
+//    ######################## test DLQ #############################
+    @RabbitListener(queues = "employee.queue", errorHandler = "rabbitRetryHandler")
+    public void getEmployee(Employee employee) {
+        LOG.info("Received Employee From RabbitMQ: " + employee);
+        if (!employee.getName().matches("[A-Z][a-z]*")){
+            throw new RuntimeException();
+        }
+    }
 }
